@@ -1,24 +1,79 @@
-import React from 'react';
-import logo from './logo.svg';
+import * as React from 'react';
 import './App.css';
+import data from './dummyData';
+import { RTable } from './table/table';
 
 function App() {
+  const columns = [
+    {
+      name: 'Name',
+      width: 100,
+    },
+    {
+      name: 'Email',
+      width: 200,
+    },
+    {
+      name: 'Money',
+      width: 100,
+    },
+    {
+      name: 'Date',
+      width: 300,
+    },
+  ];
+  const resumeColumn = {
+    name: 'Resume Column',
+    resumeFunc: (ele:any) => ele.name + ele.money,  
+  } 
+
+  const CodeExample = `
+  const columnsConfig = [
+    {
+      name: 'Name',
+      width: 100,
+    },
+    {
+      name: 'Email',
+      width: 200,
+    },
+    {
+      name: 'Money',
+      width: 100,
+    },
+    {
+      name: 'Date',
+      width: 300,
+    },
+  ];
+
+  const resumeColumnConfig = {
+    name: 'Resume Column',
+    resumeFunc: (ele:any) => ele.name + ele.money,  
+  }
+  `
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+        <div>
+        <h1>Demo of RTable</h1>
+        <div>
+          <pre>
+            Config for table
+                <code>
+                    {CodeExample}
+                </code>
+              </pre>
+        </div>
+        <div className="demoBox">
+          <h2>Result : </h2>
+           
+          <RTable resumeColumn={resumeColumn} data={data} columns={columns} />
+        </div>
+          
+        </div>
+        
     </div>
   );
 }
